@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           },
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "digital-memo-ui"
+    }
+  },
+  "defaultProject": "digital-memo-ui",
+  "cli": {
+    "analytics": "162860b1-0d41-4f40-afa6-d6d7872eb912"
+  }
 }
