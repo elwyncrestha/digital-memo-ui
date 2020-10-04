@@ -1,0 +1,54 @@
+<nb-card [nbSpinner]="spinner">
+  <nb-card-header>
+    {{action}} User
+    <button (click)="this.nbDialogRef.close('Modal Closed')" class="float-right" nbButton size="tiny" status="danger"
+      type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <form (ngSubmit)="submit()" [formGroup]="form">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="name">Name</label>
+          <input formControlName="name" fullWidth id="name" nbInput placeholder="Enter name" size="small">
+          <span class="text-danger" *ngIf="form?.get('name')?.hasError('required')">Name is required.</span>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="email">Email</label>
+          <input formControlName="email" fullWidth id="email" nbInput placeholder="Enter email" size="small"
+            type="email">
+          <span class="text-danger" *ngIf="form?.get('email')?.hasError('required')">Email address is required.</span>
+          <span class="text-danger" *ngIf="form?.get('email')?.hasError('email')">Email address is invalid.</span>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="userType">Role</label>
+          <nb-select formControlName="role" fullWidth placeholder="Select Role">
+            <nb-option *ngFor="let role of roleList" [value]="role?.id">
+              {{ role?.name }}
+            </nb-option>
+          </nb-select>
+          <span class="text-danger" *ngIf="form?.get('role')?.hasError('required')">Role is required.</span>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="username">Username</label>
+          <input formControlName="username" fullWidth id="username" nbInput placeholder="Enter username" size="small">
+          <span class="text-danger" *ngIf="form?.get('username')?.hasError('required')">Username is required.</span>
+        </div>
+        <div *ngIf="action == Action.ADD" class="col-md-6 form-group">
+          <label for="password">Password</label>
+          <input formControlName="password" fullWidth id="password" nbInput placeholder="Enter password" size="small"
+            type="password">
+          <span class="text-danger" *ngIf="form?.get('password')?.hasError('required')">Password is required.</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr />
+          <button [disabled]="form.invalid" nbButton size="small" status="success" type="submit"><i
+              class="fas fa-save"></i></button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

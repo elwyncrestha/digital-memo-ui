@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <div class="row">
+          <div class="col-md-6">Users</div>
+          <div class="col-md-6 text-right">
+            <button (click)="add()" class="ml-2" nbButton outline size="small" status="success">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="box-body">
+          <table class="table table-bordered table-hover text-center">
+            <thead>
+              <tr>
+                <th>S.N</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of dataList;let i=index">
+                <td>{{ i + 1 }}</td>
+                <td>{{data?.name | checkEmpty}}</td>
+                <td>{{data?.role?.name | checkEmpty}}</td>
+                <td>{{data?.username | checkEmpty}}</td>
+                <td>{{data?.email | checkEmpty}}</td>
+                <td>
+                  <nb-toggle #userStatus (checkedChange)="statusChange(data, userStatus)"
+                    [checked]="Status[data?.status] === Status.ACTIVE"></nb-toggle>
+                </td>
+                <td>
+                  <button (click)="edit(data)" class="ml-2" nbButton outline size="small" status="info">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

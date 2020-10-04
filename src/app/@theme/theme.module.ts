@@ -41,6 +41,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FooterComponent, HeaderComponent } from './components';
 import {
   CapitalizePipe,
+  CheckEmptyPipe,
   NumberWithCommasPipe,
   PluralPipe,
   RoundPipe,
@@ -113,6 +114,7 @@ const PIPES = [
   RoundPipe,
   TimingPipe,
   NumberWithCommasPipe,
+  CheckEmptyPipe,
 ];
 
 const DIRECTIVES = [];
@@ -125,7 +127,7 @@ const DIRECTIVES = [];
     ...OTHER_MODULES,
     ...PIPES,
     ...COMPONENTS,
-    ...DIRECTIVES
+    ...DIRECTIVES,
   ],
   declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
-    <span>Created with ♥ by <b>PEMITS</b> {{currentYear}}</span>
+    <span>Created with ♥ by <b>Elvin Shrestha</b> {{ currentYear }}</span>
   `,
 })
 export class FooterComponent implements OnInit {
