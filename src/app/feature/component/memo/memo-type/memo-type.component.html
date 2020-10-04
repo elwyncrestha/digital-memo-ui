@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <div class="row">
+          <div class="col-md-6">Memo Types</div>
+          <div class="col-md-6 text-right">
+            <button (click)="add()" class="ml-2" nbButton outline size="small" status="success">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <table class="table table-bordered table-hover text-center">
+          <thead>
+            <tr>
+              <th>S.N</th>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngIf="dataList?.length < 1">
+              <td colspan="4">No Contents</td>
+            </tr>
+            <tr *ngFor="let data of dataList;let i=index">
+              <td>{{i + 1}}</td>
+              <td>{{data?.name}}</td>
+              <td>
+                <button nbButton size="small" status="info" (click)="edit(data)">
+                  <i class="fas fa-edit"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

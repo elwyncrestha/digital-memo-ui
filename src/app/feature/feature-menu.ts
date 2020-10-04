@@ -5,6 +5,7 @@ export class MenuTitle {
   public static ROLE = 'Role';
   public static USER = 'User';
   public static MEMO = 'Memo';
+  public static MEMO_TYPE = 'Memo Type';
 }
 
 export const MENU_ITEMS: Map<string, NbMenuItem> = new Map([
@@ -39,6 +40,14 @@ export const MENU_ITEMS: Map<string, NbMenuItem> = new Map([
       title: MenuTitle.MEMO,
       icon: 'email-outline',
       link: '/feature/memo',
+    },
+  ],
+  [
+    MenuTitle.MEMO_TYPE,
+    {
+      title: MenuTitle.MEMO_TYPE,
+      icon: 'email-outline',
+      link: '/feature/memo/type',
     },
   ],
 ]);

@@ -42,7 +42,7 @@ export class FeatureComponent implements OnInit {
     this.userStates.setAuthenticatedUser(user);
     switch (user?.role?.roleType) {
       case EnumUtils.getEnum(RoleType, RoleType.ADMINISTRATOR):
-        this.menuPush([MenuTitle.ROLE, MenuTitle.USER]);
+        this.menuPush([MenuTitle.ROLE, MenuTitle.USER, MenuTitle.MEMO_TYPE]);
         break;
       case EnumUtils.getEnum(RoleType, RoleType.MAKER):
         this.menuPush([MenuTitle.MEMO]);

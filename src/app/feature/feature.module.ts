@@ -10,10 +10,22 @@ import { RoleFormComponent } from './component/role/role-form/role-form.componen
 import { NbDialogModule } from '@nebular/theme';
 import { UserComponent } from './component/user/user.component';
 import { UserFormComponent } from './component/user/user-form/user-form.component';
-
+import { MemoTypeComponent } from './component/memo/memo-type/memo-type.component';
+import { MemoTypeFormComponent } from './component/memo/memo-type/memo-type-form/memo-type-form.component';
+import { MemoComponent } from './component/memo/memo/memo.component';
 
 @NgModule({
-  declarations: [FeatureComponent, DashboardComponent, RoleComponent, RoleFormComponent, UserComponent, UserFormComponent],
+  declarations: [
+    FeatureComponent,
+    DashboardComponent,
+    RoleComponent,
+    RoleFormComponent,
+    UserComponent,
+    UserFormComponent,
+    MemoTypeComponent,
+    MemoTypeFormComponent,
+    MemoComponent,
+  ],
   imports: [
     CommonModule,
     FeatureRoutingModule,
@@ -25,5 +37,4 @@ import { UserFormComponent } from './component/user/user-form/user-form.componen
     }),
   ],
 })
-export class FeatureModule {
-}
+export class FeatureModule {}
