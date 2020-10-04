@@ -13,6 +13,9 @@ import { UserFormComponent } from './component/user/user-form/user-form.componen
 import { MemoTypeComponent } from './component/memo/memo-type/memo-type.component';
 import { MemoTypeFormComponent } from './component/memo/memo-type/memo-type-form/memo-type-form.component';
 import { MemoComponent } from './component/memo/memo/memo.component';
+import { MemoComposeComponent } from './component/memo/memo/memo-compose/memo-compose.component';
+import { MemoReadComponent } from './component/memo/memo/memo-read/memo-read.component';
+import { MemoPreviewComponent } from './component/memo/memo/memo-preview/memo-preview.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { MemoComponent } from './component/memo/memo/memo.component';
     MemoTypeComponent,
     MemoTypeFormComponent,
     MemoComponent,
+    MemoComposeComponent,
+    MemoReadComponent,
+    MemoPreviewComponent,
   ],
   imports: [
     CommonModule,

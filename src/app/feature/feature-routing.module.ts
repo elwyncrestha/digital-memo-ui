@@ -6,6 +6,9 @@ import { RoleComponent } from './component/role/role.component';
 import { UserComponent } from './component/user/user.component';
 import { MemoTypeComponent } from './component/memo/memo-type/memo-type.component';
 import { MemoComponent } from './component/memo/memo/memo.component';
+import { MemoComposeComponent } from './component/memo/memo/memo-compose/memo-compose.component';
+import { MemoReadComponent } from './component/memo/memo/memo-read/memo-read.component';
+import { MemoPreviewComponent } from './component/memo/memo/memo-preview/memo-preview.component';
 
 const routes: Routes = [
   {
@@ -40,6 +43,25 @@ const routes: Routes = [
           {
             path: 'home',
             component: MemoComponent,
+            children: [
+              {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'read/inbox',
+              },
+              {
+                path: 'compose',
+                component: MemoComposeComponent,
+              },
+              {
+                path: 'preview/:id',
+                component: MemoPreviewComponent,
+              },
+              {
+                path: 'read/:type',
+                component: MemoReadComponent,
+              },
+            ],
           },
           {
             path: 'type',

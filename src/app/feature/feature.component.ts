@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbMenuItem } from '@nebular/theme';
+import { map, take } from 'rxjs/operators';
 import { RoleType } from '../@core/enums';
 import { User } from '../@core/models';
 import { UserService, UserStates } from '../@core/services';
@@ -30,16 +31,24 @@ export class FeatureComponent implements OnInit {
   }
 
   private async resolveSideBarRoutes() {
-    this.menu = [];
-    this.menuPush([MenuTitle.DASHBOARD]);
-    let user: User = this.userStates.getAuthenticatedUser();
+    let user: User;
+    this.userStates.authenticated$
+      .pipe(
+        map((v) => v),
+        take(1)
+      )
+      .subscribe((v) => {
+        user = v;
+      });
     if (ObjectUtils.isEmpty(user)) {
       await this.userService
         .getAuthenticated()
         .toPromise()
         .then((v) => (user = v.detail));
+      this.userStates.setAuthenticatedUser(user);
     }
-    this.userStates.setAuthenticatedUser(user);
+    this.menu = [];
+    this.menuPush([MenuTitle.DASHBOARD]);
     switch (user?.role?.roleType) {
       case EnumUtils.getEnum(RoleType, RoleType.ADMINISTRATOR):
         this.menuPush([MenuTitle.ROLE, MenuTitle.USER, MenuTitle.MEMO_TYPE]);

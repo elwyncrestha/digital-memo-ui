@@ -1,1 +1,25 @@
-<p>memo works!</p>
+<div class="row">
+  <div class="col-md-3">
+    <nb-card>
+      <nb-card-body>
+        <nb-list>
+          <nb-list-item routerLinkActive="active" *ngIf="isMaker">
+            <a routerLink="/feature/memo/home/compose"><em class="fa fa-inbox"></em>&nbsp;Compose</a>
+          </nb-list-item>
+          <nb-list-item routerLinkActive="active">
+            <a routerLink="/feature/memo/home/read/inbox"><em class="fa fa-envelope-open-text"></em>&nbsp;Inbox</a>
+          </nb-list-item>
+          <nb-list-item routerLinkActive="active">
+            <a routerLink="/feature/memo/home/read/approved"><em class="fa fa-check"></em>&nbsp;Approved</a>
+          </nb-list-item>
+          <nb-list-item routerLinkActive="active">
+            <a routerLink="/feature/memo/home/read/rejected"><em class="fa fa-times"></em>&nbsp;Rejected</a>
+          </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>
