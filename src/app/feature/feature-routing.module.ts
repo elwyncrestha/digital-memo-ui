@@ -50,7 +50,7 @@ const routes: Routes = [
                 redirectTo: 'read/inbox',
               },
               {
-                path: 'compose',
+                path: 'compose/:id',
                 component: MemoComposeComponent,
               },
               {

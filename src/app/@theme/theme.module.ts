@@ -55,9 +55,8 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
-import { DARK_THEME } from './styles/theme.dark';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 const NB_MODULES = [
   NbCardModule,
@@ -96,7 +95,7 @@ const NB_MODULES = [
   NbEvaIconsModule,
 ];
 
-const OTHER_MODULES = [FormsModule, ReactiveFormsModule];
+const OTHER_MODULES = [FormsModule, ReactiveFormsModule, CKEditorModule];
 
 const COMPONENTS = [
   HeaderComponent,

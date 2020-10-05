@@ -16,6 +16,7 @@ import { MemoComponent } from './component/memo/memo/memo.component';
 import { MemoComposeComponent } from './component/memo/memo/memo-compose/memo-compose.component';
 import { MemoReadComponent } from './component/memo/memo/memo-read/memo-read.component';
 import { MemoPreviewComponent } from './component/memo/memo/memo-preview/memo-preview.component';
+import { MemoActionComponent } from './component/memo/memo/memo-action/memo-action.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MemoPreviewComponent } from './component/memo/memo/memo-preview/memo-pr
     MemoComposeComponent,
     MemoReadComponent,
     MemoPreviewComponent,
+    MemoActionComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,38 @@
+<nb-card class="m-0" [nbSpinner]="spinner" nbSpinnerSize="xxlarge" nbSpinnerStatus="primary">
+  <nb-card-header>
+    <h3 class="d-md-inline">{{action | titlecase}} Memo</h3>
+    <a class="close cursor" aria-label="Close" (click)="nbDialogRef.close()">
+      <span aria-hidden="true">×</span></a>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="row">
+        <div *ngIf="action === EnumUtils.getEnum(DocAction, DocAction.FORWARD)" class="col-md-12 form-group">
+          <label for="toUser">To User:</label>
+          <nb-select formControlName="toUser" placeholder="Select user" [ngClass]="{
+                             'is-invalid': form.get('toUser').invalid && (form.get('toUser').dirty || form.get('toUser').touched),
+                              'is-valid': !form.get('toUser').invalid && (form.get('toUser').dirty || form.get('toUser').touched)
+                              }" fullWidth id="toUser">
+            <nb-option *ngFor="let user of forwardUsers" [value]="user?.id">{{ user?.name }}</nb-option>
+          </nb-select>
+          <span *ngIf="form.get('toUser').invalid && (form.get('toUser').dirty || form.get('toUser').touched)"
+            class="text-danger">User is required.</span>
+        </div>
+        <div class="col-md-12 form-group">
+          <label for="comment">Comment:</label>
+          <textarea id="comment" nbInput rows="4" formControlName="comment" fullWidth
+            [ngClass]="{'is-invalid': form.get('comment').invalid && (form.get('comment').dirty || form.get('comment').touched)}"></textarea>
+          <span *ngIf="form.get('comment').invalid && (form.get('comment').dirty || form.get('comment').touched)"
+            class="text-danger">Comment is required.</span>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="text-right">
+      <button (click)="submit()" [disabled]="form.invalid" class="btn btn-primary m-3" type="submit">
+        <em class="fa fa-save"></em></button>
+    </div>
+  </nb-card-footer>
+</nb-card>

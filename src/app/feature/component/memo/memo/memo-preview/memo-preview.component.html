@@ -1,1 +1,110 @@
-<p>memo-preview works!</p>
+<nb-card [nbSpinner]="spinner" nbSpinnerStatus="primary" nbSpinnerSize="xxlarge">
+  <nb-card-body>
+    <div class="row text-center">
+      <div class="col-md-12">
+        <img class="border-0" alt="Bank logo" src="assets/images/logo.jpg">
+      </div>
+      <div class="col-md-12">
+        <h5>Digital Memorandum</h5>
+        <h6>{{memo?.type?.name}} Memo</h6>
+      </div>
+    </div>
+    <hr />
+    <div class="row justify-content-between">
+      <div class="col-md-6">
+        <p><strong>Ref No:</strong> {{memo?.referenceNumber}}</p>
+        <p><strong>Status:</strong> {{memo?.documentStatus | titlecase}}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="text-right"><strong>Date: </strong>{{memo?.createdAt | date}}</p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12 my-3">
+        <h6><strong>Type:</strong></h6>
+        {{memo?.type?.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 my-3">
+        <h6><strong>Subject:</strong></h6>
+        {{memo?.subject}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 justify-content-center my-3">
+        <h6><strong>Content</strong></h6>
+        <div class="card mt-2">
+          <div class="card-body">
+            <div [innerHtml]="safeHtml(memo?.content)" class="text-justify"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 my-3">
+        <h6><strong>Authority Section</strong></h6>
+        <table aria-describedby="stages-list-table"
+          class="table table-condensed table-bordered table-responsive-md text-justify text-center">
+          <thead>
+            <tr>
+              <th scope="col">S.N</th>
+              <th scope="col">Date</th>
+              <th scope="col">From User</th>
+              <th scope="col">To User</th>
+              <th scope="col">Status</th>
+              <th class="cmt-width" scope="col">Comment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stage of memo?.previousStages ; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{memo?.currentStage?.createdAt | date}}</td>
+              <td>{{stage?.fromUser?.name}}</td>
+              <td>{{stage?.toUser?.name}}</td>
+              <td>{{stage?.docAction}}</td>
+              <td class="cmt-width">{{stage?.comment}}</td>
+            </tr>
+            <tr>
+              <td>{{memo?.previousStages?.length + 1}}</td>
+              <td>{{memo?.currentStage?.createdAt | date}}</td>
+              <td>{{memo?.currentStage?.fromUser?.name}}</td>
+              <td>{{memo?.currentStage?.toUser?.name}}</td>
+              <td>{{memo?.currentStage?.docAction}}</td>
+              <td class="cmt-width">{{memo?.currentStage?.comment}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer
+    *ngIf="memo?.currentStage?.toUser?.id === currentUser?.id && memo?.documentStatus === EnumUtils.getEnum(DocStatus, DocStatus.PENDING)">
+    <div class="text-center">
+      <div class="btn-group">
+        <button *ngIf="currentUser?.role?.roleType === EnumUtils.getEnum(RoleType, RoleType.APPROVAL)"
+          (click)="memoAction(EnumUtils.getEnum(DocAction, DocAction.BACKWARD))" class="btn btn-primary"
+          data-container="body" data-toggle="tooltip" title="Backward" type="button">
+          <em class="fa fa-reply"></em>
+        </button>
+        <button (click)="memoAction(EnumUtils.getEnum(DocAction, DocAction.FORWARD))" class="btn btn-primary"
+          data-container="body" data-toggle="tooltip" title="Send Forward" type="button"><em class="fa fa-share"></em>
+        </button>
+        <button
+          *ngIf="memo?.currentStage?.docAction === EnumUtils.getEnum(DocAction, DocAction.DRAFT) || memo?.currentStage?.docAction === EnumUtils.getEnum(DocAction, DocAction.BACKWARD)"
+          (click)="editMemo(memo.id)" class="btn btn-primary" data-container="body" data-toggle="tooltip"
+          title="Edit Memo" type="button">
+          <em class="fa fa-pencil-alt"></em>
+        </button>
+        <button *ngIf="currentUser?.role?.roleType === EnumUtils.getEnum(RoleType, RoleType.APPROVAL)"
+          (click)="memoAction(EnumUtils.getEnum(DocAction, DocAction.APPROVE))" class="btn btn-primary"
+          data-container="body" data-toggle="tooltip" title="Approve" type="button"><em
+            class="fa fa-check"></em></button>
+        <button *ngIf="currentUser?.role?.roleType === EnumUtils.getEnum(RoleType, RoleType.APPROVAL)"
+          (click)="memoAction(EnumUtils.getEnum(DocAction, DocAction.REJECT))" class="btn btn-primary"
+          data-container="body" data-toggle="tooltip" title="reject" type="button">
+          <em class="fa fa-times"></em></button>
+      </div>
+    </div>
+  </nb-card-footer>
+</nb-card>

@@ -1,1 +1,37 @@
-<p>memo-compose works!</p>
+<nb-card [nbSpinner]="spinner">
+  <nb-card-header>
+    <h3>{{memoTask}} Memo</h3>
+  </nb-card-header>
+  <nb-card-body>
+    <form (ngSubmit)="save()" [formGroup]="form">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <input formControlName="subject" nbInput fullWidth placeholder="Subject:">
+          <div *ngIf="form.get('subject').hasError('required')" class="text-danger">Subject is required.</div>
+        </div>
+        <div class="col-md-6 form-group">
+          <input formControlName="referenceNumber" nbInput fullWidth placeholder="Reference No:">
+          <div *ngIf="form.get('referenceNumber').hasError('required')" class="text-danger">Reference number is
+            required.</div>
+        </div>
+        <div class="col-md-6 form-group">
+          <nb-select formControlName="type" fullWidth placeholder="Select Memo type">
+            <nb-option *ngFor="let type of memoTypes" [value]="type?.id">{{ type?.name }}</nb-option>
+          </nb-select>
+          <div *ngIf="form.get('type').hasError('required')" class="text-danger">Memo type is required.</div>
+        </div>
+        <div class="col-md-12 form-group">
+          <ckeditor [editor]="editor" formControlName="content"></ckeditor>
+          <div *ngIf="form.get('content').hasError('required')" class="text-danger">Memo content is required.</div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="col-md-12 text-right">
+      <button (click)="save()" [disabled]="!form.valid" nbButton size="small" status="success" type="submit">
+        <em class="fa fa-envelope-o"></em> Save
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

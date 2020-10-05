@@ -20,6 +20,9 @@
             </thead>
 
             <tbody>
+              <tr *ngIf="dataList?.length < 1">
+                <td colspan="5">No data available</td>
+              </tr>
               <tr *ngFor="let memo of dataList;let i=index">
                 <td>{{i + 1}}</td>
                 <td>{{memo?.type?.name}}</td>

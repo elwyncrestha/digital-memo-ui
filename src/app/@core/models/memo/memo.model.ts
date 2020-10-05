@@ -10,5 +10,6 @@ export class Memo extends BaseEntity {
   content?: string;
   documentStatus?: DocStatus;
   previousStageList?: string;
+  previousStages: Array<MemoStage>;
   currentStage?: MemoStage;
 }
